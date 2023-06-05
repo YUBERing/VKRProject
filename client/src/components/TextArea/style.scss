@@ -1,0 +1,41 @@
+.textarea {
+  display: flex;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &__header {
+    margin-right: 10px;
+  }
+
+  &__field {
+    font-family: "Times New Roman";
+    font-size: 26.8px;
+    min-height: 26.8px;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &_italic {
+    font-style: italic;
+  }
+
+  &_bold {
+    font-weight: 700;
+  }
+
+  &_up {
+    flex-direction: column;
+
+    .textarea__header {
+      margin: 0px;
+      margin-bottom: 10px;
+    }
+  }
+}

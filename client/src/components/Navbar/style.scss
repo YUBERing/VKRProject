@@ -1,0 +1,65 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: 60px;
+  min-width: 1600px;
+  width: 100%;
+  padding: 0px 40px;
+  font-size: 30px;
+
+  background-color: #e6f3fe;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+  &__leftside {
+    display: flex;
+    align-items: center;
+  }
+
+  &__rightside {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: "Times New Roman";
+    border-left: 3px solid transparent;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 100%;
+    border-image: linear-gradient(#e6f3fe, #9ed2ff, #e6f3fe);
+    -moz-border-image: -moz-linear-gradient(#e6f3fe, #9ed2ff, #e6f3fe);
+    -webkit-border-image: -webkit-linear-gradient(#e6f3fe, #9ed2ff, #e6f3fe);
+    border-image-slice: 1;
+
+    &:last-child {
+      border-right: 3px solid #9ed2ff;
+    }
+
+    &:hover {
+      background: linear-gradient(#e6f3fe, #9ed2ff, #e6f3fe);
+    }
+
+    &.active {
+      background: linear-gradient(#e6f3fe, #9ed2ff, #e6f3fe);
+    }
+  }
+
+  &__log-name {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    margin-right: 40px;
+    font-size: 32px;
+    line-height: 28px;
+  }
+}

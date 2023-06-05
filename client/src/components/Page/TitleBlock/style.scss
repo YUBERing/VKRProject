@@ -1,0 +1,42 @@
+.title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-size: 32px;
+  font-family: "Times New Roman";
+  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 56.9px;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  &__line {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  &__name {
+    &:last-child {
+      font-weight: 700;
+    }
+  }
+
+  &__footer {
+    font-weight: 700;
+  }
+}

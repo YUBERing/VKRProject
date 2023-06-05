@@ -1,0 +1,22 @@
+.field {
+  display: flex;
+  font-size: 32px;
+  font-family: "Times New Roman";
+  line-height: 1.5;
+
+  &__label {
+    margin-right: 10px;
+  }
+
+  &_bold {
+    font-weight: 700;
+  }
+
+  &_underline {
+    text-decoration: underline;
+  }
+
+  &_italic {
+    font-style: italic;
+  }
+}

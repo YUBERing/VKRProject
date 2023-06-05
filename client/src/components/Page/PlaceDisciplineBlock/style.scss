@@ -1,0 +1,32 @@
+.place-discipline-block {
+  display: flex;
+  flex-direction: column;
+  font-family: "Times New Roman";
+  font-size: 26.8px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+
+  &__header {
+    font-size: 32px;
+    font-weight: 700;
+    align-self: center;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__semesters {
+    margin-bottom: 20px;
+  }
+
+  &__based {
+    margin-bottom: 10px;
+  }
+
+  &__inputs {
+    margin-bottom: 10px;
+  }
+}

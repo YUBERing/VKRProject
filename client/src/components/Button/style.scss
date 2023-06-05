@@ -1,0 +1,96 @@
+.button {
+  display: flex;
+  min-height: 40px;
+  min-width: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: justify-all;
+  cursor: pointer;
+  font-family: "Times New Roman";
+  font-size: 32px;
+  border: 3px solid #9ed2ff;
+  background-color: #e6f3fe;
+  color: black;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #9ed2ff;
+  }
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  &_add {
+    color: green;
+    width: 100%;
+  }
+
+  &_close {
+    color: red;
+    width: 40px;
+    margin-left: 10px;
+  }
+
+  &_back {
+    display: flex;
+    position: fixed;
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    right: 30px;
+    bottom: 90px;
+    border: 3px solid #9ed2ff;
+    background-color: #e6f3fe;
+    color: black;
+
+    &:hover {
+      background-color: #9ed2ff;
+    }
+  }
+
+  &_dell {
+    color: red;
+    width: 100%;
+  }
+
+  &_menu {
+    display: flex;
+    position: fixed;
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    right: 30px;
+    bottom: 160px;
+    border: 3px solid #9ed2ff;
+    background-color: #e6f3fe;
+    color: black;
+
+    &:not(:last-child) {
+      margin-right: 0px;
+    }
+
+    &:hover {
+      background-color: #9ed2ff;
+    }
+  }
+
+  .add-icon {
+    margin-right: 10px;
+    font-size: 32px;
+  }
+
+  .close-icon {
+    font-size: 32px;
+  }
+
+  .up-icon {
+    font-size: 32px;
+  }
+
+  .menu-icon {
+    font-size: 32px;
+  }
+}

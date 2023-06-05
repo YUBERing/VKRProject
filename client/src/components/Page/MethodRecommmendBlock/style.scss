@@ -1,0 +1,26 @@
+.method-recommend {
+  display: flex;
+  flex-direction: column;
+  font-family: "Times New Roman";
+  font-size: 26.8px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+
+  &__header {
+    display: flex;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: red;
+    width: 100%;
+  }
+}

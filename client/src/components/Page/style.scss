@@ -1,0 +1,12 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 56.9px 75.88px 56.9px 113.8px;
+  width: 1240px;
+  box-sizing: border-box;
+  background-color: white;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}

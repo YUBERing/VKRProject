@@ -1,0 +1,129 @@
+.load-file-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 26px;
+  box-sizing: border-box;
+  padding: 20px;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Times New Roman";
+    font-size: 32px;
+    line-height: 1.5;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__buttons {
+    display: flex;
+    margin-bottom: 10px;
+
+    .load-file-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 3px solid #9ed2ff;
+      background-color: #e6f3fe;
+      width: 200px;
+      cursor: pointer;
+      box-sizing: border-box;
+
+      &:first-child {
+        border-right: 0px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      &:not(:first-child) {
+        border-left: 0px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+
+    .load-file-button_active {
+      background-color: #9ed2ff;
+    }
+  }
+
+  &__url {
+    display: flex;
+    border: 3px solid #9ed2ff;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  &__drag {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #9ed2ff;
+    box-sizing: border-box;
+    border-radius: 10px;
+    min-height: 500px;
+
+    .load-file-drag {
+      &__header {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        font-weight: 700;
+        border-bottom: 3px solid #9ed2ff;
+        padding: 5px 10px;
+        background-color: #e6f3fe;
+      }
+
+      &__body {
+        display: flex;
+        width: calc(100% - 20px);
+        height: 100%;
+        border: 3px solid #9ed2ff;
+        border-radius: 10px;
+        margin: 10px;
+        box-sizing: border-box;
+
+        .upload-input {
+          display: none;
+        }
+
+        .upload-label {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #e6f3fe;
+          }
+
+          .add-icon {
+            font-size: 32px;
+            width: 100px;
+            height: 100px;
+            color: #9ed2ff;
+          }
+        }
+      }
+
+      &__area {
+        margin: 10px;
+        width: calc(100% - 20px);
+        height: 100%;
+        border: 5px dashed #9ed2ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: cornflowerblue;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
