@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './style.scss'
 
 const Input = (props) => {
@@ -6,7 +6,20 @@ const Input = (props) => {
         label,
         value,
         onChange,
+        index,
+        type,
     } = props;
+
+    const [field, setField] = useState(value);
+
+    const onChangeValue = () => {
+        if (index === undefined) {
+            onChange(field)
+        }
+        else {
+            onChange(field, index)
+        }
+    }
 
     return (
         <div className={'input'}>
@@ -17,9 +30,13 @@ const Input = (props) => {
                 </div>
             }
             <input
-                value={value}
-                onChange={(e) => {onChange(e.target.value)}}
+                value={field}
+                onChange={(e) => {
+                    setField(e.target.value)
+                }}
+                onBlur={onChangeValue}
                 className={'input__field'}
+                type={type}
             />
         </div>
     );

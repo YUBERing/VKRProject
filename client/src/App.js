@@ -1,19 +1,21 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {BrowserRouter} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {Route, Routes} from "react-router";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import LoadFilePage from "./components/LoadFilePage";
 import FootBar from "./components/FootBar";
+import AdminPage from "./components/AdminPage";
 
 
 function App() {
-
   return (
       <BrowserRouter>
           <div className="App">
-              <Navbar/>
+              {
+                  window.location.pathname !== '/admin' &&
+                  <Navbar/>
+              }
                 <Routes>
                     <Route
                         path={'/'}
@@ -23,8 +25,15 @@ function App() {
                         path={'/load'}
                         element={<LoadFilePage/>}
                     />
+                    <Route
+                    path={'/admin'}
+                    element={<AdminPage/>}
+                    />
                 </Routes>
-              <FootBar/>
+              {
+                  window.location.pathname !== '/admin' &&
+                  <FootBar/>
+              }
           </div>
       </BrowserRouter>
   );

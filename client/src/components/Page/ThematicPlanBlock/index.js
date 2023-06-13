@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useEffect} from 'react';
 import Button from "../../Button";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,15 +12,27 @@ import {
 } from "../../../reducers/rpdReducer";
 import uniqid from "uniqid";
 import TextArea from "../../TextArea";
+import Input from "../../Input";
 
 const ThematicPlanBlock = forwardRef((props, ref) => {
     const thematicPlanList = useSelector(state => state.rpd.currentThematicPlan);
     const thematicPlanTotal = useSelector(state => state.rpd.currentThematicPlanTotal);
     const chapterPlanList = useSelector(state => state.rpd.currentChapterPlan);
     const chapterContentPlanList = useSelector(state => state.rpd.currentChapterContentPlan);
+    const scopeDiscipline = useSelector(state => state.rpd.currentScopeDiscipline);
     const dispatch = useDispatch();
 
-    const ratio = 8 / 220;
+    useEffect(() => {
+        const copyThematicPlanTotal = {};
+
+        for (let key in thematicPlanTotal) {
+            copyThematicPlanTotal[key] = thematicPlanTotal[key];
+        }
+
+        copyThematicPlanTotal.total = `${scopeDiscipline.totalCredits}/${scopeDiscipline.totalHours}`
+
+        dispatch(setRPDThematicPlanTotal(copyThematicPlanTotal));
+    }, [scopeDiscipline])
 
     const setThematicPlanTotal = (array) => {
         const copyThematicPlanTotal = {};
@@ -68,7 +80,7 @@ const ThematicPlanBlock = forwardRef((props, ref) => {
         copyThematicPlanList[index].lectures = value;
         const allHours =  Number(copyThematicPlanList[index].lectures) +  Number(copyThematicPlanList[index].laboratory) + Number(copyThematicPlanList[index].independentWork);
 
-        const point = allHours * ratio;
+        const point = allHours * Number(scopeDiscipline.totalCredits) / Number(scopeDiscipline.totalHours);
 
         copyThematicPlanList[index].total = `${point.toFixed(2)}/${allHours}`;
         setThematicPlanTotal(copyThematicPlanList)
@@ -82,7 +94,7 @@ const ThematicPlanBlock = forwardRef((props, ref) => {
         copyThematicPlanList[index].laboratory = value;
         const allHours =  Number(copyThematicPlanList[index].lectures) +  Number(copyThematicPlanList[index].laboratory) + Number(copyThematicPlanList[index].independentWork);
 
-        const point = allHours * ratio;
+        const point = allHours * Number(scopeDiscipline.totalCredits) / Number(scopeDiscipline.totalHours);
 
         copyThematicPlanList[index].total = `${point.toFixed(2)}/${allHours}`;
         setThematicPlanTotal(copyThematicPlanList)
@@ -96,7 +108,7 @@ const ThematicPlanBlock = forwardRef((props, ref) => {
         copyThematicPlanList[index].independentWork = value;
         const allHours =  Number(copyThematicPlanList[index].lectures) +  Number(copyThematicPlanList[index].laboratory) + Number(copyThematicPlanList[index].independentWork);
 
-        const point = allHours * ratio;
+        const point = allHours * Number(scopeDiscipline.totalCredits) / Number(scopeDiscipline.totalHours);
 
         copyThematicPlanList[index].total = `${point.toFixed(2)}/${allHours}`;
         setThematicPlanTotal(copyThematicPlanList);
@@ -165,27 +177,27 @@ const ThematicPlanBlock = forwardRef((props, ref) => {
                         {item.total}
                     </div>
                     <div className={'cell'}>
-                        <TextArea
+                        <Input
                             value={item.lectures}
                             onChange={setLectures}
                             index={index}
-                            array={array}
+                            type={'number'}
                         />
                     </div>
                     <div className={'cell'}>
-                        <TextArea
+                        <Input
                             value={item.laboratory}
                             onChange={setLaboratory}
                             index={index}
-                            array={array}
+                            type={'number'}
                         />
                     </div>
                     <div className={'cell'}>
-                        <TextArea
+                        <Input
                             value={item.independentWork}
                             onChange={setIndependentWork}
                             index={index}
-                            array={array}
+                            type={'number'}
                         />
                     </div>
                 </div>
@@ -276,6 +288,12 @@ const ThematicPlanBlock = forwardRef((props, ref) => {
                             className={'close-icon'}
                         />
                     </Button>
+                </div>
+                <div className={'thematic-plan__alert'}>
+                    {
+                        thematicPlanTotal.independentWork !== scopeDiscipline.totalHours &&
+                            '***Несовпадение данных. Проверьте итоговое кол-во часов и соотнесите с общей трудоемкостью в часах***'
+                    }
                 </div>
             </div>
         </div>

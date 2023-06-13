@@ -133,8 +133,8 @@ const PlannedOutcomesBlock = forwardRef((props, ref) => {
             return (
                 <Field
                     key={uniqid()}
-                    label={item.label}
-                    value={item.value}
+                    label={`${item[0]}:`}
+                    value={item[1]}
                 />
             )
         })

@@ -1,3 +1,4 @@
+const SET_RPDFORMLEARNING = 'SET_RPDFORMLEARNING';
 const SET_RPDDIRECTION = 'SET_RPDDIRECTION';
 const SET_RPDPROFILE = 'SET_RPDPROFILE';
 const SET_RPDYEARS = 'SET_RPDYEARS';
@@ -35,18 +36,32 @@ const SET_RPDTYPEELECTRONICEQUIPMENT = 'SET_RPDTYPEELECTRONICEQUIPMENT';
 const SET_RPDELECTRONICEQUIPMENTS = 'SET_RPDELECTRONICEQUIPMENTS';
 
 const defaultState = {
-    currentDirection: '',
-    currentProfile: '',
-    currentYears: '',
-    currentCurriculum: '',
-    currentDiscipline: '',
-    currentQualification: '',
-    currentOrderNumber: '',
+    currentFormLearning: '...',
+    currentDirection: {
+        code_direction: '...',
+        name_direction: '...'
+    },
+    currentProfile: ['...','...'],
+    currentYears: '...',
+    currentCurriculum: {
+        codeCurricula: '...',
+        form_of_training: "",
+        idPd: '',
+        nameCurricula: "",
+        number_educational_standard: '...',
+        statement: "",
+        type_of_education: "",
+        yearStartTraining: '',
+    },
+    currentDiscipline: '...',
+    currentQualification: '...',
+    currentOrderNumber: {
+        number: '...',
+        data: '...',
+        description: '...',
+    },
     currentCompetence: [
-        {
-            code: '',
-            description: '',
-        },
+
     ],
     currentActive: [],
     currentDevelopers: [''],
@@ -58,10 +73,9 @@ const defaultState = {
         know: [''],
         be_able: [''],
         own: [''],
-        master: [{
-            label: '',
-            value: '',
-        }],
+        master: [
+            ['...', '...']
+        ],
     },
     currentSemesters: [],
     currentPlaceDiscipline: {
@@ -69,23 +83,23 @@ const defaultState = {
         basis: [],
     },
     currentScopeDiscipline: {
-        totalCredits: '',
-        totalHours: '',
-        classroomClasses: '',
-        lectures: '',
-        laboratory: '',
-        practical: '',
-        independent: '',
+        totalCredits: 0,
+        totalHours: 0,
+        classroomClasses: 0,
+        lectures: 0,
+        laboratory: 0,
+        practical: 0,
+        independent: 0,
         formCertification: [''],
     },
     currentScopeContactWork: {
-        lectures: '',
-        laboratory: '',
-        consultation: '',
-        test: '',
-        exam: '',
-        course: '',
-        all: '',
+        lectures: 0,
+        laboratory: 0,
+        consultation: 0,
+        test: 0,
+        exam: 0,
+        course: 0,
+        all: 0,
     },
     currentThematicPlan: [
         {
@@ -163,6 +177,11 @@ const defaultState = {
 
 export default function rpdReducer(state = defaultState, action) {
     switch (action.type) {
+        case SET_RPDFORMLEARNING:
+            return {
+                ...state,
+                currentFormLearning: action.payload,
+            }
         case SET_RPDDIRECTION:
             return {
                 ...state,
@@ -343,6 +362,7 @@ export default function rpdReducer(state = defaultState, action) {
     }
 }
 
+export const setRPDFormLearning = formLearning => ({type: SET_RPDFORMLEARNING, payload: formLearning});
 export const setRPDDirection = direction => ({type: SET_RPDDIRECTION, payload: direction});
 export const setRPDProfile = profile => ({type: SET_RPDPROFILE, payload: profile});
 export const setRPDYears = years => ({type: SET_RPDYEARS, payload: years});

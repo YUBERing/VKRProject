@@ -6,6 +6,7 @@ import {setRPDLaboratoryClasses} from "../../../reducers/rpdReducer";
 import {useDispatch, useSelector} from "react-redux";
 import TextArea from "../../TextArea";
 import './style.scss';
+import uniqid from "uniqid";
 
 const LaboratoryClassesBlock = forwardRef((props, ref) => {
     const laboratoryClassesList = useSelector(state => state.rpd.currentLaboratoryClasses);
@@ -45,7 +46,7 @@ const LaboratoryClassesBlock = forwardRef((props, ref) => {
         return laboratoryClassesList.map(
             (item, index, array) => {
                 return (
-                    <div className={'line'}>
+                    <div className={'line'} key={uniqid()}>
                         <div className={'cell'}>
                             6.2.{index + 1}
                         </div>

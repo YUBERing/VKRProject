@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import {setRPDPracticalTraining} from "../../../reducers/rpdReducer";
 import uniqid from "uniqid";
+import Input from "../../Input";
 
 const PracticalTrainingBlock = forwardRef((props, ref) => {
     const practicalTrainingList = useSelector(state => state.rpd.currentPracticalTraining);
@@ -80,7 +81,7 @@ const PracticalTrainingBlock = forwardRef((props, ref) => {
     }
 
     const getLine = () => {
-        const codeCompetenceList = competenceList.map(item => item.code)
+        const codeCompetenceList = competenceList.map(item => item[0])
 
         return practicalTrainingList.map(
             (item, index, array) => {
@@ -92,6 +93,7 @@ const PracticalTrainingBlock = forwardRef((props, ref) => {
                             type = 'competence'
                             array = {array}
                             index = {index}
+                            value = {item.codeCompetence}
                             />
                         </div>
                         <div className={'cell'}>
@@ -112,24 +114,27 @@ const PracticalTrainingBlock = forwardRef((props, ref) => {
                             {item.total}
                         </div>
                         <div className={'cell'}>
-                            <TextArea
+                            <Input
                                 value = {item.lectures}
                                 onChange = {setLectures}
                                 index = {index}
+                                type={'number'}
                             />
                         </div>
                         <div className={'cell'}>
-                            <TextArea
+                            <Input
                                 value = {item.courseProject}
                                 onChange = {setCourseProject}
                                 index = {index}
+                                type={'number'}
                             />
                         </div>
                         <div className={'cell'}>
-                            <TextArea
+                            <Input
                                 value = {item.laboratory}
                                 onChange = {setLaboratory}
                                 index = {index}
+                                type={'number'}
                             />
                         </div>
                     </div>

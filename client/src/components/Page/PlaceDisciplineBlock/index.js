@@ -4,11 +4,12 @@ import Button from "../../Button";
 import TextArea from "../../TextArea";
 import uniqid from "uniqid";
 import {useDispatch, useSelector} from "react-redux";
-import {setRPDPlaceDiscipline, setRPDPlannedOutcomes} from "../../../reducers/rpdReducer";
+import {setRPDPlaceDiscipline} from "../../../reducers/rpdReducer";
 import './style.scss';
 
 const PlaceDisciplineBlock = forwardRef((props, ref) => {
     const placeDiscipline = useSelector(state => state.rpd.currentPlaceDiscipline);
+    const semestersList = useSelector(state => state.rpd.currentSemesters);
 
     const dispatch = useDispatch();
 
@@ -79,7 +80,27 @@ const PlaceDisciplineBlock = forwardRef((props, ref) => {
     }
 
     const getSemesters = () => {
-        return '{семестры}'
+        if (semestersList.length === 1) {
+            return semestersList[0] + 'семестре'
+        }
+
+        if (semestersList.length > 1) {
+            const string = semestersList.reduce((string, item, index, array) => {
+                if (index === 0) {
+                    return string + `${item}`;
+                }
+                if (index === array.length - 1) {
+                    return string + ` и ${item}`;
+                }
+                if (index > 0) {
+                    return string + `, ${item}`;
+                }
+            }, ['']);
+
+            return string + ' семестрах'
+        }
+
+        return '...'
     }
 
     const getItem = (list, setItem, onDel) => {

@@ -3,8 +3,7 @@ import {setDirection} from "../reducers/directionReducer";
 
 export const getDirection = async () => {
     return async dispatch => {
-        const response = await axios.get('http://localhost:7070/direction');
-        console.log(response.data)
+        const response = await axios.get('http://25.68.145.51:8085/get-direction');
         dispatch(setDirection(response.data));
     }
 }

@@ -2,8 +2,6 @@ import React, {useLayoutEffect, useRef, useState} from 'react';
 import './style.scss';
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "../Button";
-import {setRPDOrders} from "../../reducers/rpdReducer";
-import {useDispatch, useSelector} from "react-redux";
 
 const MIN_TEXTAREA_HEIGHT = 40.2;
 

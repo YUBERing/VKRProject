@@ -1,7 +1,9 @@
 const SET_CURRICULUM = 'SET_CURRICULUM';
 
 const defaultState = {
-    currentCurriculum: [],
+    currentCurriculum: [
+
+    ],
 }
 
 export default function curriculumReducer(state = defaultState, action) {

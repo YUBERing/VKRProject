@@ -7,6 +7,7 @@ const TitleBlock = forwardRef((props, ref) => {
     const direction = useSelector(state => state.rpd.currentDirection);
     const profile = useSelector(state => state.rpd.currentProfile);
     const discipline = useSelector(state => state.rpd.currentDiscipline);
+    const qualification = useSelector(state => state.rpd.currentQualification);
 
     return (
         <div className={'title-block'} ref={ref}>
@@ -35,17 +36,17 @@ const TitleBlock = forwardRef((props, ref) => {
                 />
                 <Field
                     label={'Направление подготовки'}
-                    value={direction}
+                    value={`(${direction.code_direction}) ${direction.name_direction}`}
                     modif={'italic'}
                 />
                 <Field
                     label={'Направленность'}
-                    value={`«${profile}»`}
+                    value={`«${profile[1]}»`}
                     modif={'italic'}
                 />
                 <Field
                     label={'Квалификация (степень) выпускника:'}
-                    value={''}
+                    value={qualification}
                     modif={'underline'}
                 />
             </div>

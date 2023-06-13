@@ -104,7 +104,7 @@ const DescriptionMTBaseBlock = forwardRef((props, ref) => {
         return classroomList.map(
             (item, index, array) => {
                 return (
-                    <div className={'line'}>
+                    <div className={'line'} key={uniqid()}>
                         <div className={'cell'}>
                             {index + 1}
                         </div>
@@ -136,7 +136,7 @@ const DescriptionMTBaseBlock = forwardRef((props, ref) => {
         return electronicEquipmentsList.map(
             (item, index, array) => {
                 return (
-                    <div className={'line'}>
+                    <div className={'line'} key={uniqid()}>
                         <div className={'cell'}>
                             {
                                 index + 1

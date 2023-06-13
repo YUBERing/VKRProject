@@ -1,4 +1,4 @@
-import React, {BaseSyntheticEvent as e, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './style.scss'
 import Page from "../Page";
 import TitleBlock from "../Page/TitleBlock";
@@ -25,7 +25,10 @@ import DescriptionMTBaseBlock from "../Page/DescriptionMTBaseBlock";
 import Button from "../Button";
 import Input from "../Input";
 import {getFile} from "../../action/getFile";
-
+import {setProfile} from "../../reducers/profileReducer";
+import {setYears} from "../../reducers/yearsReducer";
+import {setCurriculum} from "../../reducers/curriculumReducer";
+import {setDiscipline} from "../../reducers/disciplineReducer";
 
 const Main = () => {
     const listBlocks = [
@@ -109,11 +112,11 @@ const Main = () => {
 
     const dispatch = useDispatch();
 
-    const [nameFile, setNameFile] = useState('')
+    const [name, setName] = useState('')
 
     const onCreateFile = (e) => {
         e.stopPropagation();
-        getFile(nameFile, rpdData);
+        getFile(name, rpdData);
     }
 
     useEffect(() => {
@@ -123,8 +126,17 @@ const Main = () => {
             );
         }
 
+        dispatch(setProfile([]));
+        dispatch(setYears([]));
+        dispatch(setCurriculum([]));
+        dispatch(setDiscipline([]));
+
         getDataDirection();
     }, [])
+
+    const setNameFile = (value) => {
+        setName(value)
+    }
 
     return (
         <div className={'main'}>
@@ -136,26 +148,31 @@ const Main = () => {
                     label={'Направление'}
                     list={directionList}
                     type={'direction'}
+                    value={JSON.stringify(rpdData.currentDirection)}
                 />
                 <Select
                     label={'Направленность'}
                     list={profileList}
                     type={'profile'}
+                    value={JSON.stringify(rpdData.currentProfile)}
                 />
                 <Select
                     label={'Год начала подготовки'}
                     list={yearsList}
                     type={'years'}
+                    value={rpdData.currentYears}
                 />
                 <Select
                     label={'Учебный план'}
                     list={curriculumList}
                     type={'curriculum'}
+                    value={JSON.stringify(rpdData.currentCurriculum)}
                 />
                 <Select
                     label={'Дисциплина'}
                     list={disciplineList}
                     type={'discipline'}
+                    value={rpdData.currentDiscipline}
                 />
             </div>
             <div className={'main__document'}>
@@ -184,9 +201,10 @@ const Main = () => {
                 </div>
                 <div className={'main__body'}>
                     <Input
-                        value={nameFile}
+                        value={name}
                         label={'Имя файла'}
                         onChange={setNameFile}
+                        type={'text'}
                     />
                     <Button
                         label={'Создать файл'}

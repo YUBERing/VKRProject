@@ -22,6 +22,12 @@
   &__buttons {
     display: flex;
     width: 100%;
+    margin-bottom: 10px;
+  }
+
+  &__alert {
+    color: red;
+    text-align: center;
   }
 
   .table {

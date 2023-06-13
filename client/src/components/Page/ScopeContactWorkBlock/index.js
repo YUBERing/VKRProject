@@ -1,7 +1,28 @@
 import React, {forwardRef} from 'react';
 import './style.scss'
+import {useDispatch, useSelector} from "react-redux";
+import Input from "../../Input";
+import {setRPDScopeContactWork} from "../../../reducers/rpdReducer";
 
 const ScopeContactWorkBlock = forwardRef((props, ref) => {
+    const scopeContactWork = useSelector(state => state.rpd.currentScopeContactWork);
+    const formLearning = useSelector(state => state.rpd.currentFormLearning);
+
+    const dispatch = useDispatch();
+
+    const setConsultation = (value) => {
+        const copyScopeContactWork = {};
+
+        for (const key in scopeContactWork) {
+            copyScopeContactWork[key] = scopeContactWork[key];
+        }
+
+        copyScopeContactWork.consultation = value;
+        copyScopeContactWork.all = Number(copyScopeContactWork.lectures) + Number(copyScopeContactWork.laboratory) + Number(copyScopeContactWork.test) + Number(copyScopeContactWork.exam) + Number(copyScopeContactWork.course) + Number(copyScopeContactWork.consultation);
+
+        dispatch(setRPDScopeContactWork(copyScopeContactWork))
+    }
+
     return (
         <div className={'scope-contact-work'} ref={ref}>
             <div className={'scope-contact-work__header'}>
@@ -14,7 +35,10 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Виды учебных занятий
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {
+                                formLearning &&
+                                `${formLearning} форма`
+                            }
                         </div>
                     </div>
                     <div className={'line'}>
@@ -22,7 +46,7 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                            Лекции
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {scopeContactWork.lectures}
                         </div>
                     </div>
                     <div className={'line'}>
@@ -30,7 +54,9 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Лабораторные занятия
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {
+                                scopeContactWork.laboratory
+                            }
                         </div>
                     </div>
                     <div className={'line'}>
@@ -38,7 +64,11 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Консультации
                         </div>
                         <div className={'cell'}>
-                            ...
+                            <Input
+                                value={scopeContactWork.consultation}
+                                onChange={setConsultation}
+                                type={'number'}
+                            />
                         </div>
                     </div>
                     <div className={'line'}>
@@ -46,7 +76,7 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Зачет
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {scopeContactWork.test}
                         </div>
                     </div>
                     <div className={'line'}>
@@ -54,7 +84,9 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Экзамен
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {
+                                scopeContactWork.exam
+                            }
                         </div>
                     </div>
                     <div className={'line'}>
@@ -62,7 +94,9 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Курсовой проект
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {
+                                scopeContactWork.course
+                            }
                         </div>
                     </div>
                     <div className={'line'}>
@@ -70,7 +104,9 @@ const ScopeContactWorkBlock = forwardRef((props, ref) => {
                             Всего
                         </div>
                         <div className={'cell'}>
-                            ...
+                            {
+                                scopeContactWork.all
+                            }
                         </div>
                     </div>
                 </div>

@@ -3,19 +3,22 @@ import Input from "../Input";
 import Button from "../Button";
 import AddIcon from "@mui/icons-material/Add";
 import './style.scss';
+import {setXLSFile} from "../../action/setXLSFile";
 
 const LoadFilePage = () => {
     const [flag, setFlag] = useState(false);
     const [url, setURL] = useState('');
     const [dragEnter, setDragEnter] = useState(false);
+    const [alert, setAlert] = useState('');
 
     const onLoadFileOnURL = () => {
 
     }
 
     const fileUpload = (e) => {
+        setAlert('');
         const files = [...e.target.files]
-        files.forEach(item => console.log(item));
+        files.forEach(item => setXLSFile(item));
     }
 
     const setActiveDrag = () => {
@@ -47,8 +50,13 @@ const LoadFilePage = () => {
     const onDrop = (event) => {
         event.preventDefault();
         event.stopPropagation();
+        setAlert('');
         const files = [...event.dataTransfer.files]
-        files.forEach(item => console.log(item));
+        files.forEach(async (item) => {
+            const response = await setXLSFile(item);
+
+            setAlert(response);
+        });
         setDragEnter(false);
     }
 
@@ -102,6 +110,9 @@ const LoadFilePage = () => {
                             }
                         </div>
                 }
+            </div>
+            <div className={'load-file-page__alert'}>
+                {alert}
             </div>
         </div>
     );

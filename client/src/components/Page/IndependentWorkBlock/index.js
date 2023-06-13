@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import uniqid from "uniqid";
 import TextArea from "../../TextArea";
 import {setRPDIndependentWork} from "../../../reducers/rpdReducer";
+import Input from "../../Input";
 
 const IndependentWorkBlock = forwardRef((props, ref) => {
     const independentWorkList = useSelector(state => state.rpd.currentIndependentWork);
@@ -109,11 +110,12 @@ const IndependentWorkBlock = forwardRef((props, ref) => {
                             />
                         </div>
                         <div className={'cell'}>
-                            <TextArea
+                            <Input
                                 value={item.hours}
                                 onChange={setHours}
                                 index={index}
                                 array={array}
+                                type={'number'}
                             />
                         </div>
                         <div className={'cell'}>

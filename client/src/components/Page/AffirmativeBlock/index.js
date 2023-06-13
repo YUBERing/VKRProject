@@ -18,6 +18,7 @@ const AffirmativeBlock = forwardRef((props, ref) => {
     const developersList = useSelector(state => state.rpd.currentDevelopers);
     const reviewer = useSelector(state => state.rpd.currentReviewer);
     const affirmative = useSelector(state => state.rpd.currentAffirmative);
+    const orderNumber = useSelector(state => state.rpd.currentOrderNumber);
 
     const dispatch = useDispatch();
 
@@ -65,10 +66,10 @@ const AffirmativeBlock = forwardRef((props, ref) => {
     return (
         <div className={'affirmative-block'} ref={ref}>
             <div className={'affirmative-block__order'}>
-                Рабочая программа дисциплины <span>{'Технологии разработки программного обеспечения'} </span>
+                Рабочая программа дисциплины <span>{discipline} </span>
                 разработана в соответствии с
-                Федеральным государственным образовательным стандартом <span>{'09.03.02 Информационные системы и технологии'}, </span>
-                утв. приказом Министерства образования и науки РФ от {'19 сентября 2017 г. N 926'}
+                Федеральным государственным образовательным стандартом <span>{`(${direction.code_direction}) ${direction.name_direction}`}, </span>
+                утв. приказом Министерства образования и науки РФ от {`${orderNumber.data} N ${orderNumber.number}`}
             </div>
             <div className={'affirmative-block__section'}>
                 Разработал:

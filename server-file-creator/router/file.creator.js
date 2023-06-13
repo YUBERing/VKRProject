@@ -38,7 +38,7 @@ router.get('/file-creator', (req, res) => {
             })
 
             const masterList = data.currentPlannedOutcomes.master.map(item => {
-                return {label: item.label, value: item.value}
+                return {label: item[0], value: item[1]}
             })
 
             const showBased = data.currentPlaceDiscipline.based.length !== 0;
@@ -160,15 +160,37 @@ router.get('/file-creator', (req, res) => {
                 }
             })
 
+            const stringSemesters = data.currentSemesters.reduce((string, item, index, array) => {
+                if (index === 0) {
+                    return string + `${item}`;
+                }
+                if (index === array.length - 1) {
+                    return string + ` и ${item}`;
+                }
+                if (index > 0) {
+                    return string + `, ${item}`;
+                }
+            }, ['']);
+
+            const stringFormCertification = data.currentScopeDiscipline.formCertification.reduce((string, item, index) => {
+                if (index === 0) {
+                    return string + `${item}`
+                }
+                if (index > 0) {
+                    return string + `, ${item}`
+                }
+            }, '')
+
             const dataToAdd = {
+                formLearning: data.currentFormLearning,
                 discipline: data.currentDiscipline,
-                direction: data.currentDirection,
-                profile: data.currentProfile,
+                direction: `(${data.currentDirection.code_direction}) ${data.currentDirection.name_direction}`,
+                profile: data.currentProfile[1],
                 qualification: data.currentQualification,
-                order_number: data.currentOrderNumber,
+                order_number: `${data.currentOrderNumber.data} N${data.currentOrderNumber.number}`,
                 developerList: developerList,
                 reviewer: data.currentReviewer,
-                directionChange: data.currentDirection,
+                directionChange: data.currentDirection.name_direction,
                 affiramtive: data.currentAffirmative,
                 goal: data.currentGoal,
                 ordersList: ordersList,
@@ -176,7 +198,7 @@ router.get('/file-creator', (req, res) => {
                 be_ableList: beAbleList,
                 ownList: ownList,
                 masterList: masterList,
-                semesters: data.currentSemesters,
+                semesters: stringSemesters,
                 showBased: showBased,
                 showBasis: showBasis,
                 baseList: baseList,
@@ -188,7 +210,7 @@ router.get('/file-creator', (req, res) => {
                 laboratory: data.currentScopeDiscipline.laboratory,
                 practical: data.currentScopeDiscipline.practical,
                 independet: data.currentScopeDiscipline.independent,
-                form_certification: data.currentScopeDiscipline.formCertification,
+                form_certification: stringFormCertification,
                 lection: data.currentScopeContactWork.lectures,
                 laboratory: data.currentScopeContactWork.laboratory,
                 consultation: data.currentScopeContactWork.consultation,
